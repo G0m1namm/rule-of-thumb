@@ -3,10 +3,10 @@ import Card from '../Card';
 import Dropdown from '../Dropdown';
 import { data } from '../../assets/data.json';
 import './Main.scss';
+import { connect } from 'react-redux';
+import { setTypeView } from '../../redux/actions';
 
-export default function MainContent() {
-    const defaultView = "grid";
-    const [typeView, setTypeView] = React.useState(defaultView);
+export function MainContent({ setView, typeView }) {
 
     const options = [
         { value: 'list', text: 'List' },
@@ -14,7 +14,7 @@ export default function MainContent() {
     ]
 
     const onSelectChange = value => {
-        setTypeView(value);
+        setView(value);
     }
 
     return (
@@ -25,7 +25,7 @@ export default function MainContent() {
                         <h2 className="rulings__header-title">Previous Rulings</h2>
                     </div>
                     <div className="rulings__header-right">
-                        <Dropdown {...{ options, onSelectChange }} defaultValue={defaultView} />
+                        <Dropdown {...{ options, onSelectChange }} defaultValue={typeView} />
                     </div>
                 </div>
                 <div className="rulings__cards-container">
@@ -41,3 +41,15 @@ export default function MainContent() {
         </main >
     )
 }
+const mapStateToProps = (state) => ({
+    ...state
+})
+
+const mapDispatchToProps = dispatch => ({
+    setView: (type) => dispatch(setTypeView(type)),
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MainContent)
