@@ -1,0 +1,1 @@
+export const SET_TYPE_VIEW = 'SET_TYPE_VIEW';
