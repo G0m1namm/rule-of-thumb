@@ -21,7 +21,7 @@
         }
         &.bar--negative {
             transform: scale(-1);
-            left: 2px;
+            left: 1px;
 
             & > .progress-bar__bar-line-trail {
                 stroke: rgba(0, 0, 0, 0);
@@ -49,6 +49,7 @@
                 line-height: 1.85rem;
                 font-weight: normal;
                 font-style: normal;
+                padding: 0 0.3rem;
             }
         }
     }

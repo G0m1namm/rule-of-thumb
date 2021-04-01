@@ -2,7 +2,8 @@
     width: 300px;
     height: 300px;
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: flex-end;
 
     & * {
         color: var(--color-white);
@@ -29,9 +30,11 @@
         top: 0;
         left: 0;
         padding: 0.6rem;
+        width: 16px;
+        height: 16px;
 
         &[data-thumb="up"] {
-            background: rgba(var(--color-green-positive), 1);
+            background: rgba(var(--color-green-positive), 0.8);
         }
         &[data-thumb="down"] {
             background: rgba(var(--color-yellow-negative), 1);
@@ -53,17 +56,23 @@
                 font-size: 2.5rem;
                 line-height: 3rem;
                 font-weight: normal;
-            }
-            &__desc {
+                max-height: 6rem;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
+                -webkit-line-clamp: 2;
+                text-overflow: ellipsis;
+            }
+            &__desc {
                 max-height: 3rem;
                 margin: 0.5rem 0;
                 font-size: 1.25rem;
                 line-height: 1.5rem;
                 font-weight: 300;
-                -webkit-line-clamp: 6;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                -webkit-line-clamp: 2;
                 text-overflow: ellipsis;
             }
             &__actions {
@@ -112,18 +121,5 @@
 
     &__gauge-bar {
         height: 100%;
-        & > progress {
-            height: 20px;
-            width: 100%;
-            &::-moz-progress-bar {
-                color: rosybrown;
-            }
-            &::-webkit-progress-bar {
-                background-color: green;
-            }
-            &::-webkit-progress-value {
-                background-color: rgba(var(--color-green-positive), 1);
-            }
-        }
     }
 }

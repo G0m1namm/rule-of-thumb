@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../Card';
 import Dropdown from '../Dropdown';
+import { data } from '../../assets/data.json';
 import './Main.scss';
 
 export default function MainContent() {
@@ -22,9 +23,11 @@ export default function MainContent() {
                 </div>
                 <div className="rulings__cards-container">
                     <ul className="rulings__cards">
-                        <li className="rulings__card">
-                            <Card />
-                        </li>
+                        {data.map((item, index) => (
+                            <li className="rulings__card">
+                                <Card key={index} isGrid {...item} />
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>
