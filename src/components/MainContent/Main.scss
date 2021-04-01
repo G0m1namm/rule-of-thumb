@@ -83,4 +83,35 @@ main[role="main"] {
   main h2 {
     font-size: 2.5rem;
   }
+
+  .rulings {
+    &__cards {
+      overflow: unset;
+      scroll-snap-type: unset;
+      display: grid;
+      gap: 1.5rem;
+
+      &[data-type-view="grid"] {
+        grid-template-columns: repeat(3, 349px);
+        place-content: center;
+
+        & > .rulings__card {
+          justify-self: center;
+          padding: 0;
+
+          & > .card {
+            min-width: 349px;
+            min-height: 349px;
+          }
+        }
+      }
+      &[data-type-view="list"] {
+        grid-template-columns: 100%;
+        grid-auto-rows: 142px;
+        & > .rulings__card {
+          padding: 0;
+        }
+      }
+    }
+  }
 }

@@ -81,6 +81,7 @@
                         font-size: 1rem;
                         line-height: 1.2rem;
                         text-align: right;
+                        font-weight: bold;
                     }
                     &__buttons-grid {
                         display: grid;
@@ -184,6 +185,56 @@
                     & .info-left__percentage,
                     & .info-right__percentage {
                         font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: 1100px) {
+    .card[data-grid="true"] {
+        & .card {
+            &__container {
+                margin: 0;
+            }
+            &__content {
+                padding: 0 1.6rem 0.65rem 2.5rem;
+                box-sizing: border-box;
+                & .content-inner {
+                    &__title {
+                        font-size: 2rem;
+                        line-height: 2.4rem;
+                    }
+                    &__desc {
+                        font-size: 0.85rem;
+                        line-height: 1rem;
+                    }
+                    &__actions {
+                        & .actions {
+                            &__eyebrow {
+                                font-size: 0.65rem;
+                                line-height: 0.8rem;
+                            }
+                            &__button-thumbs-up,
+                            &__button-thumbs-down {
+                                padding: 0.4rem;
+                            }
+                            &__button-cta {
+                                font-size: 0.85rem;
+                                padding: 0.55rem 0.3rem;
+                            }
+                        }
+                    }
+                }
+            }
+            &__gauge-bar {
+                & .progress-bar {
+                    &__info {
+                        & .info-left__percentage,
+                        & .info-right__percentage {
+                            font-size: 1rem;
+                        }
                     }
                 }
             }
