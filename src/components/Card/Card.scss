@@ -1,0 +1,113 @@
+.card {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    display: inline-block;
+
+    & * {
+        color: var(--color-white);
+    }
+
+    &__thumbnail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &__container {
+        position: relative;
+        display: grid;
+        grid-template-rows: auto auto 36px;
+        margin-top: 8rem;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    &__indicator {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0.6rem;
+
+        &[data-thumb="up"] {
+            background: rgba(var(--color-green-positive), 1);
+        }
+        &[data-thumb="down"] {
+            background: rgba(var(--color-yellow-negative), 1);
+        }
+    }
+
+    &__content {
+        padding: 2.6rem;
+        padding-top: 0;
+        &-inner {
+            height: 100%;
+        }
+    }
+
+    .content {
+        &-inner {
+            &__title {
+                color: var(--color-white);
+                margin: 0;
+                font-size: 2.5rem;
+                line-height: 3rem;
+                font-weight: normal;
+            }
+            &__desc {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                max-height: 3rem;
+                margin: 0.5rem 0;
+                font-size: 1.25rem;
+                line-height: 1.5rem;
+                font-weight: 300;
+                -webkit-line-clamp: 6;
+                text-overflow: ellipsis;
+            }
+            &__actions {
+                .actions {
+                    &__eyebrow {
+                        font-size: 1rem;
+                        line-height: 1.2rem;
+                        text-align: right;
+                    }
+                    &__buttons-grid {
+                        display: grid;
+                        grid-template-columns: repeat(3, min-content);
+                        grid-auto-rows: 3.2rem;
+                        gap: 1rem;
+                        justify-content: flex-end;
+                        place-items: center;
+                    }
+                    &__button-thumbs-up,
+                    &__button-thumbs-down {
+                        all: unset;
+                        display: inline-flex;
+                        padding: 0.6rem;
+                        width: min-content;
+                        height: min-content;
+                        place-items: center;
+                    }
+                    &__button-thumbs-up {
+                        background: rgba(var(--color-green-positive), 1);
+                    }
+                    &__button-thumbs-down {
+                        background: rgba(var(--color-yellow-negative), 1);
+                    }
+                    &__button-cta {
+                        all: unset;
+                        background-color: var(--color-darker-background);
+                        padding: 0.8rem 0.3rem;
+                        display: inline-block;
+                        min-width: 98px;
+                        text-align: center;
+                        border: 1px solid var(--color-white);
+                    }
+                }
+            }
+        }
+    }
+}

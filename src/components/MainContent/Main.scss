@@ -1,4 +1,5 @@
 main[role="main"] {
+  padding: 0 1rem;
   margin-top: 2rem;
 
   & h2,
@@ -33,6 +34,9 @@ main[role="main"] {
 }
 
 @media all and (min-width: 768px) {
+  main[role="main"] {
+    padding: 0;
+  }
 }
 
 @media all and (min-width: 1100px) {
