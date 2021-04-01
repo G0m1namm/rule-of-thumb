@@ -3,7 +3,8 @@ import './Dropdown.scss';
 
 export default function Dropdown({ options, onSelectChange, defaultValue }) {
     const [isOpen, setIsOpen] = React.useState(false);
-    const [optionSelected, setOptionSelected] = React.useState(defaultValue);
+    const defaultView = options.find(item => item.value === defaultValue)?.text;
+    const [optionSelected, setOptionSelected] = React.useState(defaultView);
 
     const toggle = () => setIsOpen(!isOpen);
 

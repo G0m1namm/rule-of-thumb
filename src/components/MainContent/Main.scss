@@ -39,20 +39,40 @@ main[role="main"] {
   }
   &__card {
     padding-right: 1rem;
-
-    & > .card {
-      scroll-snap-align: start;
-    }
+    scroll-snap-align: start;
   }
 }
 
 @media all and (min-width: 768px) {
-  main[role="main"] {
-    padding: 0;
+  .rulings {
+    &__cards {
+      overflow: unset;
+      scroll-snap-type: unset;
+
+      &[data-type-view="grid"] {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 351px);
+        place-content: center;
+        gap: 1.5rem;
+
+        & > .rulings__card {
+          justify-self: center;
+          padding: 0;
+
+          & > .card {
+            min-width: 351px;
+            min-height: 351px;
+          }
+        }
+      }
+    }
   }
 }
 
 @media all and (min-width: 1100px) {
+  main[role="main"] {
+    padding: 0;
+  }
   main h2 {
     font-size: 2.5rem;
   }
