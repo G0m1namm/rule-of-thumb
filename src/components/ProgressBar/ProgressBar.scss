@@ -22,7 +22,12 @@
         &.bar--negative {
             transform: scale(-1);
             left: 1px;
-
+            @media all and (min-width: 768px) {
+                left: 4px;
+            }
+            @media all and (min-width: 1100px) {
+                left: 5px;
+            }
             & > .progress-bar__bar-line-trail {
                 stroke: rgba(0, 0, 0, 0);
             }

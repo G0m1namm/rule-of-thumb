@@ -95,15 +95,23 @@
                     &__button-thumbs-down {
                         all: unset;
                         cursor: pointer;
+                        position: relative;
                         display: inline-flex;
                         padding: 0.6rem;
                         width: min-content;
                         height: min-content;
                         place-items: center;
+                        user-select: none;
 
                         &:checked,
                         &:focus {
                             border: 2px solid var(--color-white);
+                        }
+                        & input {
+                            position: absolute;
+                            top: 0;
+                            width: 0;
+                            height: 0;
                         }
                     }
                     &__button-thumbs-up {
@@ -263,21 +271,7 @@
                 padding: 0 1.2rem 1.7rem 11rem;
 
                 &-inner {
-                    display: flex;
-
                     & .content-inner {
-                        padding-right: 1.7rem;
-                        &__title {
-                            font-size: 2rem;
-                            line-height: 2.5rem;
-                            -webkit-line-clamp: 1;
-                        }
-                        &__desc {
-                            font-size: 1rem;
-                            line-height: 1.2rem;
-                            margin: 0;
-                            margin-top: 1.3rem;
-                        }
                         &__actions {
                             & .actions {
                                 &__buttons-grid {
@@ -294,16 +288,6 @@
                                     padding: 0.55rem 0.3rem;
                                 }
                             }
-                        }
-                    }
-                }
-            }
-            &__gauge-bar {
-                & .progress-bar {
-                    &__info {
-                        & .info-left__percentage,
-                        & .info-right__percentage {
-                            font-size: 1.3rem;
                         }
                     }
                 }

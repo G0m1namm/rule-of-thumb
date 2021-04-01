@@ -32,7 +32,7 @@ export default function MainContent() {
                     <ul className="rulings__cards" data-type-view={typeView} >
                         {data.map((item, index) => (
                             <li key={index} className="rulings__card">
-                                <Card isGrid={typeView === "grid"} {...item} />
+                                <Card isGrid={typeView === "grid"} {...item} index={index} />
                             </li>
                         ))}
                     </ul>
