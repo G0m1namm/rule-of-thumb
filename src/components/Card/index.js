@@ -3,6 +3,7 @@ import { data } from '../../assets/data.json';
 import ThumbsUpIcon from '../../assets/img/thumbs-up.svg';
 import ThumbsDownIcon from '../../assets/img/thumbs-down.svg';
 import './Card.scss';
+import ProgressBar from '../ProgressBar';
 
 const requestImageFile = require.context('../../assets/img/', true, /.png$/);
 
@@ -32,8 +33,8 @@ export default function Card({ isGrid = true }) {
                         </div>
                     </div>
                 </div>
-                <div className="card__gauge-bar">
-
+                <div className="card__gauge-bar" data-progres="80">
+                    <ProgressBar />
                 </div>
             </div>
         </div>
