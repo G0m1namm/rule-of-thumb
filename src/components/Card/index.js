@@ -21,8 +21,10 @@ export default function Card({ isGrid = true, name, description, lastUpdated, ca
                         <img src={thumbImage} alt="thumbs up" />
                     </span>
                     <div className="card__content-inner">
-                        <h3 className="content-inner__title">{name}</h3>
-                        <p className="content-inner__desc">{description}</p>
+                        <div className="content-inner">
+                            <h3 className="content-inner__title">{name}</h3>
+                            <p className="content-inner__desc">{description}</p>
+                        </div>
                         <div className="content-inner__actions">
                             <p className="actions__eyebrow">{lastUpdated} in {category}</p>
                             <div className="actions__buttons-grid">

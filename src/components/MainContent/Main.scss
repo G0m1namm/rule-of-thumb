@@ -48,12 +48,12 @@ main[role="main"] {
     &__cards {
       overflow: unset;
       scroll-snap-type: unset;
+      display: grid;
+      gap: 1.5rem;
 
       &[data-type-view="grid"] {
-        display: grid;
         grid-template-columns: repeat(auto-fit, 351px);
         place-content: center;
-        gap: 1.5rem;
 
         & > .rulings__card {
           justify-self: center;
@@ -63,6 +63,13 @@ main[role="main"] {
             min-width: 351px;
             min-height: 351px;
           }
+        }
+      }
+      &[data-type-view="list"] {
+        grid-template-columns: 100%;
+        grid-auto-rows: 142px;
+        & > .rulings__card {
+          padding: 0;
         }
       }
     }
