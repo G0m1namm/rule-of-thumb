@@ -1,0 +1,61 @@
+.progress-bar {
+    height: inherit;
+    position: relative;
+    overflow: hidden;
+
+    &__bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: inherit;
+        border-radius: 0;
+        width: 100%;
+
+        &.bar--positive {
+            & > .progress-bar__bar-line-trail {
+                stroke: rgba(0, 0, 0, 0);
+            }
+            & > .progress-bar__bar-line-path {
+                stroke: rgba(var(--color-green-positive), 0.6);
+            }
+        }
+        &.bar--negative {
+            transform: scale(-1);
+            left: 1px;
+            @media all and (min-width: 768px) {
+                left: 4px;
+            }
+            @media all and (min-width: 1100px) {
+                left: 5px;
+            }
+            & > .progress-bar__bar-line-trail {
+                stroke: rgba(0, 0, 0, 0);
+            }
+            & > .progress-bar__bar-line-path {
+                stroke: rgba(var(--color-yellow-negative), 0.6);
+            }
+        }
+    }
+    &__info {
+        position: relative;
+        display: flex;
+        flex-flow: nowrap row;
+        justify-content: space-between;
+        align-items: center;
+        height: inherit;
+
+        &-left,
+        &-right {
+            padding: 0.8rem 1rem;
+
+            .info-left__percentage,
+            .info-right__percentage {
+                font-size: 1.5rem;
+                line-height: 1.85rem;
+                font-weight: normal;
+                font-style: normal;
+                padding: 0 0.3rem;
+            }
+        }
+    }
+}
