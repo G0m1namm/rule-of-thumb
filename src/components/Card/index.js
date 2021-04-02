@@ -2,14 +2,29 @@ import React from 'react';
 import ThumbsUpIcon from '../../assets/img/thumbs-up.svg';
 import ThumbsDownIcon from '../../assets/img/thumbs-down.svg';
 import ProgressBar from '../ProgressBar';
-
 import moment from 'moment';
 
 import './Card.scss';
 
-const requestImageFile = require.context('../../assets/img/', true, /.png$/);
+const requestImageFile = require.context('../../assets/img/minified', true, /.jpg$/);
 
-export default function Card({ isGrid = true, id, name, description, lastUpdated, category, picture, votes, index, onVote }) {
+const areEqual = (prevProps, nextProps) => {
+    const prevObj = Object.keys(prevProps);
+    const nextObj = Object.keys(nextProps);
+
+    if (prevObj.length !== nextObj.length) return false;
+
+    for (const prop in nextObj) {
+        if (prevProps[prop] !== nextProps[prop]) return false;
+    }
+
+    if (prevProps.votes.positive !== nextProps.votes.positive) return false;
+    if (prevProps.votes.negative !== nextProps.votes.negative) return false;
+
+    return true;
+}
+
+export const Card = React.memo(({ isGrid = true, id, name, description, lastUpdated, category, picture, votes, index, onVote }) => {
     const positiveVotes = (votes.positive / (votes.positive + votes.negative) * 100).toFixed(1);
     const negativeVotes = (votes.negative / (votes.positive + votes.negative) * 100).toFixed(1);
     const thumb = positiveVotes > negativeVotes ? "up" : "down";
@@ -31,7 +46,7 @@ export default function Card({ isGrid = true, id, name, description, lastUpdated
 
     return (
         <div className="card" data-grid={isGrid}>
-            <img className="card__thumbnail" src={requestImageFile(`./${picture}`).default} alt={`${name}`} />
+            <img className="card__thumbnail" src={requestImageFile(`./${picture}`).default} alt={`${name}`} loading="lazy" />
             <div className="card__container">
                 <div className="card__content">
                     <span className="card__indicator" data-thumb={thumb}>
@@ -90,4 +105,7 @@ export default function Card({ isGrid = true, id, name, description, lastUpdated
             </div>
         </div>
     )
-}
+}, areEqual)
+
+
+export default Card;

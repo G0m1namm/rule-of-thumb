@@ -1,8 +1,8 @@
 import React from 'react';
 import ThumbsUpIcon from '../../assets/img/thumbs-up.svg';
 import ThumbsDownIcon from '../../assets/img/thumbs-down.svg';
-import PopeImage from '../../assets/img/pope-francis.png';
-import PopeBigImage from '../../assets/img/pope-francis.@2x.png';
+import PopeImage from '../../assets/img/minified/pope-francis.jpg';
+import PopeBigImage from '../../assets/img/minified/pope-francis.@2x.jpg';
 
 export default function Hero() {
     return (

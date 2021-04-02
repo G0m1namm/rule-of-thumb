@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setTypeView, updateVotes } from '../../redux/actions';
+import loadable from '@loadable/component';
 
-import Card from '../Card';
+// import Card from '../Card';
 import Dropdown from '../Dropdown';
-
 import './Main.scss';
+
+const Card = loadable(() => import('../Card'));
 
 export function MainContent({ setView, typeView, onVote, cardsData }) {
 
