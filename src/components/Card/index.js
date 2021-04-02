@@ -2,7 +2,6 @@ import React from 'react';
 import ThumbsUpIcon from '../../assets/img/thumbs-up.svg';
 import ThumbsDownIcon from '../../assets/img/thumbs-down.svg';
 import ProgressBar from '../ProgressBar';
-
 import moment from 'moment';
 
 import './Card.scss';
@@ -18,6 +17,9 @@ const areEqual = (prevProps, nextProps) => {
     for (const prop in nextObj) {
         if (prevProps[prop] !== nextProps[prop]) return false;
     }
+
+    if (prevProps.votes.positive !== nextProps.votes.positive) return false;
+    if (prevProps.votes.negative !== nextProps.votes.negative) return false;
 
     return true;
 }
