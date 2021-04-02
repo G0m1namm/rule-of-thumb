@@ -232,6 +232,9 @@
     }
     .card[data-grid="true"] {
         & .card {
+            &__indicator {
+                top: 0.3rem;
+            }
             &__gauge-bar {
                 & .progress-bar {
                     &__bar {
