@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import { loadState, persistState } from './persistHandle'
-import rootReducer from './reducer'
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { loadState, persistState } from './persistHandler';
+import rootReducer from './reducer';
 
 
 const persistedState = loadState();
@@ -10,6 +10,7 @@ const composedEnhancer = composeWithDevTools(
 )
 const store = createStore(rootReducer, persistedState, composedEnhancer)
 
+// Save redux state on every update
 store.subscribe(() => {
     persistState(store.getState())
 })
