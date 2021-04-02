@@ -9,7 +9,20 @@ import './Card.scss';
 
 const requestImageFile = require.context('../../assets/img/', true, /.png$/);
 
-export default function Card({ isGrid = true, id, name, description, lastUpdated, category, picture, votes, index, onVote }) {
+const areEqual = (prevProps, nextProps) => {
+    const prevObj = Object.keys(prevProps);
+    const nextObj = Object.keys(nextProps);
+
+    if (prevObj.length !== nextObj.length) return false;
+
+    for (const prop in nextObj) {
+        if (prevProps[prop] !== nextProps[prop]) return false;
+    }
+
+    return true;
+}
+
+export const Card = React.memo(({ isGrid = true, id, name, description, lastUpdated, category, picture, votes, index, onVote }) => {
     const positiveVotes = (votes.positive / (votes.positive + votes.negative) * 100).toFixed(1);
     const negativeVotes = (votes.negative / (votes.positive + votes.negative) * 100).toFixed(1);
     const thumb = positiveVotes > negativeVotes ? "up" : "down";
@@ -90,4 +103,7 @@ export default function Card({ isGrid = true, id, name, description, lastUpdated
             </div>
         </div>
     )
-}
+}, areEqual)
+
+
+export default Card;
