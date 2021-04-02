@@ -249,6 +249,7 @@ hr[role="separator"] {
 }
 
 .featured-card__buttons > .icon-button {
+  cursor: pointer;
   width: 50%;
   height: 2.75rem;
 }
