@@ -170,7 +170,6 @@
                 height: inherit;
                 left: -1.73%;
                 object-position: -15px;
-                box-shadow: 10px 0px 15px #888888;
             }
             &__container {
                 grid-template-rows: calc(100% - 36px) 36px;
@@ -313,6 +312,15 @@
         & .card {
             &__thumbnail {
                 width: 240px;
+            }
+            &__container {
+                background: linear-gradient(
+                    to right,
+                    rgba(0, 0, 0, 0.0001) 9%,
+                    #888888 17.5%,
+                    #666666 50%,
+                    rgba(51, 51, 51, 0.6) 100%
+                );
             }
             &__content {
                 padding: 0 1.2rem 1.7rem 11rem;
