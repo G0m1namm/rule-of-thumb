@@ -10,7 +10,6 @@ import './Card.scss';
 const requestImageFile = require.context('../../assets/img/', true, /.png$/);
 
 export default function Card({ isGrid = true, id, name, description, lastUpdated, category, picture, votes, index, onVote }) {
-    console.log(id, 'rendered');
     const positiveVotes = (votes.positive / (votes.positive + votes.negative) * 100).toFixed(1);
     const negativeVotes = (votes.negative / (votes.positive + votes.negative) * 100).toFixed(1);
     const thumb = positiveVotes > negativeVotes ? "up" : "down";
