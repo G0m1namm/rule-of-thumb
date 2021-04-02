@@ -1,12 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setTypeView, updateVotes } from '../../redux/actions';
+
 import Card from '../Card';
 import Dropdown from '../Dropdown';
-import { data } from '../../assets/data.json';
+
 import './Main.scss';
 
-export default function MainContent() {
-    const defaultView = "grid";
-    const [typeView, setTypeView] = React.useState(defaultView);
+export function MainContent({ setView, typeView, onVote, cardsData }) {
 
     const options = [
         { value: 'list', text: 'List' },
@@ -14,7 +15,7 @@ export default function MainContent() {
     ]
 
     const onSelectChange = value => {
-        setTypeView(value);
+        setView(value);
     }
 
     return (
@@ -25,14 +26,14 @@ export default function MainContent() {
                         <h2 className="rulings__header-title">Previous Rulings</h2>
                     </div>
                     <div className="rulings__header-right">
-                        <Dropdown {...{ options, onSelectChange }} defaultValue={defaultView} />
+                        <Dropdown {...{ options, onSelectChange }} defaultValue={typeView} />
                     </div>
                 </div>
                 <div className="rulings__cards-container">
                     <ul className="rulings__cards" data-type-view={typeView} >
-                        {data.map((item, index) => (
+                        {cardsData.map((item, index) => (
                             <li key={index} className="rulings__card">
-                                <Card isGrid={typeView === "grid"} {...item} index={index} />
+                                <Card key={`card-${index}`} onVote={onVote} isGrid={typeView === "grid"} {...item} index={index} />
                             </li>
                         ))}
                     </ul>
@@ -41,3 +42,16 @@ export default function MainContent() {
         </main >
     )
 }
+const mapStateToProps = (state) => ({
+    ...state
+})
+
+const mapDispatchToProps = dispatch => ({
+    setView: (type) => dispatch(setTypeView(type)),
+    onVote: (id, option) => dispatch(updateVotes(id, option))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MainContent)
