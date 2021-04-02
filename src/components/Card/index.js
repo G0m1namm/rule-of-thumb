@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import './Card.scss';
 
-const requestImageFile = require.context('../../assets/img/', true, /.png$/);
+const requestImageFile = require.context('../../assets/img/minified', true, /.jpg$/);
 
 const areEqual = (prevProps, nextProps) => {
     const prevObj = Object.keys(prevProps);
@@ -44,7 +44,7 @@ export const Card = React.memo(({ isGrid = true, id, name, description, lastUpda
 
     return (
         <div className="card" data-grid={isGrid}>
-            <img className="card__thumbnail" src={requestImageFile(`./${picture}`).default} alt={`${name}`} />
+            <img className="card__thumbnail" src={requestImageFile(`./${picture}`).default} alt={`${name}`} loading="lazy" />
             <div className="card__container">
                 <div className="card__content">
                     <span className="card__indicator" data-thumb={thumb}>

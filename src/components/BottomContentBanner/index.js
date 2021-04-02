@@ -1,6 +1,6 @@
 import React from 'react';
-import PeopleImage from '../../assets/img/bg-people.png';
-import PeopleBigImage from '../../assets/img/bg-people.@2x.png';
+import PeopleImage from '../../assets/img/minified/bg-people.jpg';
+import PeopleBigImage from '../../assets/img/minified/bg-people.@2x.jpg';
 
 export default function BottonContentBanner() {
     return (
@@ -8,7 +8,7 @@ export default function BottonContentBanner() {
             <img
                 srcSet={`${PeopleImage} 750w, ${PeopleBigImage} 1440w`}
                 sizes="(min-width: 750px) 1440px, 100vw"
-                className="banner__background" src="assets/img/bg-people.png"
+                className="banner__background"
                 src={PeopleImage}
                 alt="crowd of people"
                 role="none" />
