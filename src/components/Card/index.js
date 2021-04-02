@@ -8,6 +8,12 @@ import './Card.scss';
 
 const requestImageFile = require.context('../../assets/img/minified', true, /.jpg$/);
 
+/**
+ * 
+ * @param {Object} prevProps previous props from Card
+ * @param {Object} nextProps new props from Card
+ * @returns Whether or not the component should render
+ */
 const areEqual = (prevProps, nextProps) => {
     const prevObj = Object.keys(prevProps);
     const nextObj = Object.keys(nextProps);

@@ -10,6 +10,7 @@ const composedEnhancer = composeWithDevTools(
 )
 const store = createStore(rootReducer, persistedState, composedEnhancer)
 
+// Save redux state on every update
 store.subscribe(() => {
     persistState(store.getState())
 })
