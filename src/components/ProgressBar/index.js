@@ -1,7 +1,9 @@
 import React from 'react';
 import { Line } from 'rc-progress';
+
 import ThumbsUpIcon from '../../assets/img/thumbs-up.svg';
 import ThumbsDownIcon from '../../assets/img/thumbs-down.svg';
+
 import './ProgressBar.scss';
 
 export default function ProgressBar({ positive = 0, negative = 0 }) {

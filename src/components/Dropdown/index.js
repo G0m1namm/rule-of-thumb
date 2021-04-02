@@ -1,6 +1,13 @@
 import React from 'react';
 import './Dropdown.scss';
 
+/**
+ * 
+ * @param {Array} options Array that dropdown will render 
+ * @param {function} onSelectChange Callback function for onclick event on list item 
+ * @param {string} defaultValue Value that will be display first
+ * @returns Dropdown component
+ */
 export default function Dropdown({ options, onSelectChange, defaultValue }) {
     const [isOpen, setIsOpen] = React.useState(false);
     const defaultView = options.find(item => item.value === defaultValue)?.text;
