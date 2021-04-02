@@ -10,7 +10,7 @@ export default function BottonContentBanner() {
                 sizes="(min-width: 750px) 1440px, 100vw"
                 className="banner__background" src="assets/img/bg-people.png"
                 src={PeopleImage}
-                alt=""
+                alt="crowd of people"
                 role="none" />
             <div className="banner__left">
                 <h2 className="banner__heading">Is there anyone else you would want us to add?</h2>
