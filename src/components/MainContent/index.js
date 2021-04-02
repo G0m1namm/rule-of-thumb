@@ -1,12 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setTypeView, updateVotes } from '../../redux/actions';
+
 import Card from '../Card';
 import Dropdown from '../Dropdown';
-import { data } from '../../assets/data.json';
-import './Main.scss';
-import { connect } from 'react-redux';
-import { setTypeView } from '../../redux/actions';
 
-export function MainContent({ setView, typeView }) {
+import './Main.scss';
+
+export function MainContent({ setView, typeView, onVote, cardsData }) {
 
     const options = [
         { value: 'list', text: 'List' },
@@ -30,9 +31,9 @@ export function MainContent({ setView, typeView }) {
                 </div>
                 <div className="rulings__cards-container">
                     <ul className="rulings__cards" data-type-view={typeView} >
-                        {data.map((item, index) => (
+                        {cardsData.map((item, index) => (
                             <li key={index} className="rulings__card">
-                                <Card isGrid={typeView === "grid"} {...item} index={index} />
+                                <Card key={`card-${index}`} onVote={onVote} isGrid={typeView === "grid"} {...item} index={index} />
                             </li>
                         ))}
                     </ul>
@@ -47,6 +48,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     setView: (type) => dispatch(setTypeView(type)),
+    onVote: (id, option) => dispatch(updateVotes(id, option))
 })
 
 export default connect(

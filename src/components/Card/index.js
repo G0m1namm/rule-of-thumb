@@ -9,15 +9,30 @@ import './Card.scss';
 
 const requestImageFile = require.context('../../assets/img/', true, /.png$/);
 
-export default function Card({ isGrid = true, name, description, lastUpdated, category, picture, votes, index }) {
+export default function Card({ isGrid = true, id, name, description, lastUpdated, category, picture, votes, index, onVote }) {
+    console.log(id, 'rendered');
     const positiveVotes = (votes.positive / (votes.positive + votes.negative) * 100).toFixed(1);
     const negativeVotes = (votes.negative / (votes.positive + votes.negative) * 100).toFixed(1);
     const thumb = positiveVotes > negativeVotes ? "up" : "down";
     const thumbImage = positiveVotes > negativeVotes ? ThumbsUpIcon : ThumbsDownIcon;
     const eyebrowInfo = `${moment(lastUpdated).fromNow()} in ${category}`;
+
+    const [selectedOption, setSelectedOption] = React.useState(null);
+    const [isVoting, setIsVoting] = React.useState(true);
+
+    const handleChange = e => {
+        (e.target.checked) ? setSelectedOption(e.target.value) : setSelectedOption(null);
+    }
+
+    const handleVote = () => {
+        if (typeof onVote === "function") onVote(id, selectedOption);
+        setIsVoting(false);
+        setSelectedOption(null);
+    }
+
     return (
         <div className="card" data-grid={isGrid}>
-            <img className="card__thumbnail" src={requestImageFile(`./${picture}`).default} alt="" />
+            <img className="card__thumbnail" src={requestImageFile(`./${picture}`).default} alt={`${name}`} />
             <div className="card__container">
                 <div className="card__content">
                     <span className="card__indicator" data-thumb={thumb}>
@@ -29,17 +44,43 @@ export default function Card({ isGrid = true, name, description, lastUpdated, ca
                             <p className="content-inner__desc">{description}</p>
                         </div>
                         <div className="content-inner__actions">
-                            <p className="actions__eyebrow">{eyebrowInfo}</p>
+                            <p className="actions__eyebrow">{isVoting ? eyebrowInfo : 'Thank you for your vote!'}</p>
                             <div className="actions__buttons-grid">
-                                <label htmlFor={`thumbsUp-${index}`} className="actions__button-thumbs-up">
-                                    <input name={`vote-${index}`} type="radio" id={`thumbsUp-${index}`} />
-                                    <img src={ThumbsUpIcon} alt="thumbs up" />
-                                </label>
-                                <label htmlFor={`thumbsDown-${index}`} className="actions__button-thumbs-down">
-                                    <input name={`vote-${index}`} type="radio" id={`thumbsDown-${index}`} />
-                                    <img src={ThumbsDownIcon} alt="thumbs down" />
-                                </label>
-                                <button className="actions__button-cta">Vote Now</button>
+                                {isVoting ? (
+                                    <>
+                                        <label
+                                            htmlFor={`thumbsUp-${index}`}
+                                            className="actions__button-thumbs-up"
+                                            data-checked={selectedOption === 'positive'}
+                                        >
+                                            <input
+                                                name={`up-${index}`}
+                                                type="checkbox"
+                                                id={`thumbsUp-${index}`}
+                                                value="positive"
+                                                checked={selectedOption === 'positive'}
+                                                onChange={handleChange}
+                                            />
+                                            <img src={ThumbsUpIcon} alt="thumbs up" />
+                                        </label>
+                                        <label
+                                            htmlFor={`thumbsDown-${index}`}
+                                            className="actions__button-thumbs-down"
+                                            data-checked={selectedOption === 'negative'}
+                                        >
+                                            <input
+                                                name={`down-${index}`}
+                                                type="checkbox"
+                                                id={`thumbsDown-${index}`}
+                                                value="negative"
+                                                checked={selectedOption === 'negative'}
+                                                onChange={handleChange}
+                                            />
+                                            <img src={ThumbsDownIcon} alt="thumbs down" />
+                                        </label>
+                                        <button className="actions__button-cta" onClick={handleVote} disabled={!selectedOption}>Vote Now</button>
+                                    </>
+                                ) : <button className="actions__button-cta" onClick={() => setIsVoting(true)}>Vote Again</button>}
                             </div>
                         </div>
                     </div>

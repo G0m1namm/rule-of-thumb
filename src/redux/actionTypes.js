@@ -1,1 +1,2 @@
 export const SET_TYPE_VIEW = 'SET_TYPE_VIEW';
+export const UPDATE_CARD_DATA = 'UPDATE_CARD_DATA';

@@ -11,7 +11,7 @@ export default function Dropdown({ options, onSelectChange, defaultValue }) {
     const handleOnSelect = option => {
         setOptionSelected(option.text);
         setIsOpen(false);
-        if (onSelectChange) onSelectChange(option.value);
+        if (typeof onSelectChange === "function") onSelectChange(option.value);
     }
     return (
         <div className="dropdown">
